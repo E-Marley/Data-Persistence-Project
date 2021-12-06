@@ -11,17 +11,21 @@ public class MainManager : MonoBehaviour
     public Rigidbody Ball;
 
     public Text ScoreText;
+    public Text BestScore;
     public GameObject GameOverText;
     
     private bool m_Started = false;
     private int m_Points;
     
     private bool m_GameOver = false;
+    public static MainManager Instance;
+    private DataManager dataManager;
 
     
     // Start is called before the first frame update
     void Start()
     {
+        dataManager = GameObject.Find("DataManager").GetComponent<DataManager>();
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
         
@@ -42,6 +46,7 @@ public class MainManager : MonoBehaviour
     {
         if (!m_Started)
         {
+            //Here put in code to display current saved highscore in JSON file
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 m_Started = true;
@@ -57,7 +62,7 @@ public class MainManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                PlayAgain();
             }
         }
     }
@@ -66,11 +71,28 @@ public class MainManager : MonoBehaviour
     {
         m_Points += point;
         ScoreText.text = $"Score : {m_Points}";
+        HighScoreDisplay();
     }
 
     public void GameOver()
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
+        //Here put in code to overwrite JSON file if current score is the highest
     }
+    private void PlayAgain()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    private void ReturnMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+    private void HighScoreDisplay()
+    {
+        //Here put in code to check JSON for saved high score and display current
+        //score and player name if it exceeds it.
+        BestScore.text = $"Best Score: {m_Points} Name: {dataManager.playerName}";
+    }
+
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -8,9 +9,12 @@ using UnityEditor;
 
 public class MenuUI : MonoBehaviour
 {
-
+    public InputField nameInput;
     public void StartNew()
     {
+        //store player name
+        string playerName = nameInput.text;
+        DataManager.instance.playerName = playerName;
         SceneManager.LoadScene(1);
     }
     public void Exit()
@@ -20,5 +24,9 @@ public class MenuUI : MonoBehaviour
 #else
         Application.Quit(); //original code to quit Unity player
 #endif
+    }
+    public void ViewHighScores()
+    {
+        SceneManager.LoadScene(2);
     }
 }

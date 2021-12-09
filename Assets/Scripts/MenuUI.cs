@@ -10,6 +10,24 @@ using UnityEditor;
 public class MenuUI : MonoBehaviour
 {
     public InputField nameInput;
+    public List<Text> scoreSlots;
+
+    void Start()
+    {
+        UpdateHighScores();
+    }
+
+    void UpdateHighScores()
+    {
+        List<string> playerNames = DataManager.instance.GetHighScoreNames();
+        List<int> playerScores = DataManager.instance.GetHighScores();
+
+        for (int i = 0; i < playerNames.Count; i++)
+        {
+            string scoreText = playerNames[i] + " -- " + playerScores[i];
+            scoreSlots[i].text = scoreText;
+        }
+    }
     public void StartNew()
     {
         //store player name

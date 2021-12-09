@@ -804,6 +804,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameInput: {fileID: 61630292}
+  scoreSlots:
+  - {fileID: 1715529876}
 --- !u!114 &859714351
 MonoBehaviour:
   m_ObjectHideFlags: 0

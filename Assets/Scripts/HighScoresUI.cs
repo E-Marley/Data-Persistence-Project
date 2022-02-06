@@ -17,7 +17,7 @@ public class HighScoresUI : MonoBehaviour
         List<int> playerScores = DataManager.instance.GetHighScores();
 
         for(int i=0;i<playerNames.Count;i++){
-            string scoreText = playerNames[i] + " -- " + playerScores[i];
+            string scoreText = playerNames[i] + "....." + playerScores[i];
             scoreSlots[i].text = scoreText;
         }
     }

@@ -10,7 +10,7 @@ public class DataManager : MonoBehaviour
     public static DataManager instance;
     public string playerName;
     //data to save in session
-    string highScoreName = "--";
+    string highScoreName = " ";
     int highScore = 0;
     HighScores highScoresTemp;
     private void Awake()
@@ -28,7 +28,7 @@ public class DataManager : MonoBehaviour
         if (highScoresTemp.playerNames == null)
         {
             highScoresTemp.playerNames = new List<string>();
-            highScoresTemp.playerNames.AddRange(new string[] { "--", "--", "--", "--", "--" });
+            highScoresTemp.playerNames.AddRange(new string[] { " ", " ", " ", " ", " " });
         }
         if (highScoresTemp.playerScores == null)
         {
